@@ -32,7 +32,7 @@ public class Lesson3Controller : MonoBehaviour
     [ContextMenu("Add Item")]//Here is my 2 block - I added "Add Item" option to the Context Menu
     private void AddItem()
     {
-        if (_value != "")
+        if(!string.IsNullOrEmpty(_value))
         {
             _list.Add(_value);
             Debug.Log("Added: " + _value);
@@ -45,14 +45,14 @@ public class Lesson3Controller : MonoBehaviour
 
 
 
-    [ContextMenu("Remove Item")]//Here is my 3 block - I added "Remove Item" option to the Context Menu
-    private void RemoveItem()
+    [ContextMenu("Remove Last Item")]//Here is my 3 block - I added "Remove Last Item" option to the Context Menu
+    private void RemoveLastItem()
     {
         if (_list.Count > 0)
         {
-            string removedItem = _list[_list.Count - 1];
+            string removedLastItem = _list[_list.Count - 1];
             _list.RemoveAt(_list.Count - 1);
-            Debug.Log("Removed: " + removedItem);
+            Debug.Log("Removed: " + removedLastItem);
 
         }
         else
@@ -62,8 +62,23 @@ public class Lesson3Controller : MonoBehaviour
 
     }
 
+
+    [ContextMenu("Remove Value")]//Here is my 4 block - I added "Remove Value" option to the Context Menu
+    private void RemoveValue()
+    {
+       if (_list.Remove(_value))
+        {
+            Debug.Log("Removed: " + _value);
+        }
+        else
+        {
+            Debug.Log("Error: no Value here!");
+        }
+
+    }
+
     
-      [ContextMenu("Sort List")]//Here is my 4 block - I added "Sort List" option to the Context Menu
+      [ContextMenu("Sort List")]//Here is my 5 block - I added "Sort List" option to the Context Menu
     private void SortList()
     {
         if (_list.Count == 0)
@@ -77,7 +92,7 @@ public class Lesson3Controller : MonoBehaviour
         Print();
     }
     
-    [ContextMenu("Clear List")]//Here is my 5 block - I added "Clear List" option to the Context Menu
+    [ContextMenu("Clear List")]//Here is my 6 block - I added "Clear List" option to the Context Menu
     private void ClearList()
     {
         _list.Clear();
